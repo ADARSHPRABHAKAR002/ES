@@ -1,0 +1,18 @@
+	AREA  reset,CODE,READONLY
+	ENTRY
+	LDR R0,=0x40000000
+	LDR R2,[R0],#4
+	MOV R3,#0
+	MOV R4,#1
+	STR R3,[R0]
+	SUBS R2,#1
+loop  ADDS R5,R3,R4
+    ADD R0,#4
+    STR R5,[R0]
+	MOV R3,R4
+	MOV R4,R5
+	SUBS R2,#1
+	CMP R2,#0
+	BNE loop
+stop B stop
+	END

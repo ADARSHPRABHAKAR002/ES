@@ -1,0 +1,19 @@
+	AREA reset,CODE,READONLY
+	ENTRY
+	LDR R0,=0x40000000
+	LDR R4,=0x40000100
+	LDR R1,[R0]
+	LDR R5,=0x8
+check  AND R2,R1,#0x0f
+	CMP R2,#0x0A
+	BLT a
+	ADD R3,R2,#55
+	B  wt
+a	ADD R3,R2,#'0'
+wt  STRB R3,[R4],#1
+	ROR R1,#4
+	SUBS R5,#1
+	CMP R5,#0
+	BNE check
+En  B En
+	END
